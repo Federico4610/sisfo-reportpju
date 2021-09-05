@@ -35,6 +35,7 @@
                             <input type="hidden" name="id" value="{{ $data->id_pengaduan }}">
                             <textarea rows="10" class="form-control col-md-10" name="isi"></textarea>
                         </div>
+                        
                         <a href="/pengaduan" class="btn btn-secondary ml-3 float-right"><i class="fas fa-undo-alt"></i> Kembali</a>
                         <button type="submit" class="btn btn-warning float-right"><i class="fas fa-paper-plane"></i> Kirim</button>
                     </form>

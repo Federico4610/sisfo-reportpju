@@ -11,8 +11,8 @@
             <div class="card">
                 <div class="card-body">
 
-                    {{-- Button tambah --}}
-                    <a href="{{ route('masyarakat.create') }}" class="btn btn-warning mb-4"><i class="fas fa-plus text-light"></i></a>
+                    <!-- {{-- Button tambah --}}
+                    <a href="{{ route('masyarakat.create') }}" class="btn btn-warning mb-4"><i class="fas fa-plus text-light"></i></a> -->
 
                     {{-- Form search --}}
                     <div class="float-right">
@@ -62,7 +62,7 @@
                                     <td>{{ $item->telp }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td>
-                                        <a href="{{ route('masyarakat.edit',$item->nik) }}" class="btn btn-warning"><i class="fas fa-edit mb-2"></i></a>
+                                        <!-- <a href="{{ route('masyarakat.edit',$item->nik) }}" class="btn btn-warning"><i class="fas fa-edit mb-2"></i></a> -->
                                         <a href="#" data-id="" class="btn btn-danger confirm_script-{{$item->nik}} mr-3">
                                             <form action="{{ route('masyarakat.destroy',$item->nik)}}" class="delete_form-{{$item->nik}}" method="POST">
                                             @method('DELETE')

@@ -17,22 +17,17 @@
 
             <div class="mt-5">
               @if (Auth::guard('masyarakat')->check())
-              <a href="masyarakat_pengaduan" class="button rounded-pill shadow tebel-sedang">Isi Pelaporan</a>
-              &nbsp;
-              <a href="history" class="link">History Pelaporan</a>
+              <a href="masyarakat_pengaduan" class="button rounded-pill shadow tebel-sedang ">Isi Pelaporan</a>
               @else
               <a href="#" id="swal-6" class="button rounded-pill shadow tebel-sedang">Isi Pelaporan</a>
-              &nbsp;
-              <a href="#" id="swal-6" class="link">History Pelaporan</a>
               @endif
             </div>
-
             <br>
-
           </div>
         </div>
         </div>
       </div>
+    </div>
 @endsection
 
 @push('page-scripts')

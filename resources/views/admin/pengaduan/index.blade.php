@@ -1,6 +1,6 @@
 @extends('admin/layout.master')
 
-@section('title','pengaduan')
+@section('title','Pengaduan')
 @section('title2','index')
 @section('pengaduan','active')
 
@@ -24,6 +24,16 @@
                     @endif
                     {{-- Button tambah --}}
                     {{-- <a href="{{ route('pengaduan.create') }}" class="btn btn-violet mb-4"><i class="fas fa-plus text-light"></i></a> --}}
+                    
+                    {{-- Button Cetak Surat Harian --}}
+                    &nbsp;
+                    <a href="/pengaduan/ct_surathrn" target="_blank"class="btn btn-info">
+                        <i class="far fa-copy"></i>Cetak Surat Harian</a>
+                        &nbsp
+                    {{-- Button Cetak Surat Harian --}}
+                    &nbsp;
+                    <a href="/pengaduan/ct_laporankegiatan" target="_blank"class="btn btn-info">
+                        <i class="far fa-copy"></i>Cetak Laporan Kegiatan</a>
 
                     {{-- Form search --}}
                     <div class="float-right">
@@ -63,7 +73,7 @@
                                     <td>{{ $item->tanggal_pengaduan }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td class="gap-2 col-6 mx-auto">
-                                        @if ($item->status == 'terkirim')
+                                    @if ($item->status == 'terkirim')
                                             <a href="{{ route('pengaduan.proses',$item->id_pengaduan )}}" class="btn btn-primary">
                                                 <i class="fas fa-keyboard"></i> Diproses</a>
                                         @elseif($item->status == 'proses')
@@ -71,9 +81,7 @@
                                                 <i class="fas fa-check"></i> Selesai</a>
                                         @else
 
-                                        @endif
-                                        <a href="{{ route('pengaduan.cetak',$item->id_pengaduan) }}" class="btn btn-info">
-                                            <i class="far fa-copy"></i> Buat Surat</a>
+                                        @endif 
                                         <a href="{{ route('pengaduan.tanggapan',$item->id_pengaduan) }}" class="btn btn-warning">
                                             <i class="far fa-comment-dots"></i> Tanggapi</a>
                                     </td>

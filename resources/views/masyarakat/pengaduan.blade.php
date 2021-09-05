@@ -15,13 +15,14 @@
                       <div class="col-md-12 mt-4 mb-2">
                         <img src="{{ asset('assets/img/nonimage.jpg') }}" width="200" class="img-thumbnail mr-3" align="left" id="preview">
                       </div>
+                      
                       <div class="col-md-12"></div>
 
                       <div class="col-md-12 mb-3">
                         <label>Masukkan Gambar</label>
                           <div class="form-group">
                             <div class="custom-file">
-                              <input name="gambar_masakan" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control" id="inputGambar_masakan" placeholder=" masukan file gambar buku" name="gambar">
+                              <input name="gambar_pengaduan" type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control" id="inputGambar_masakan" placeholder=" masukan file gambar buku" name="gambar" multiple>
                             </div>
                           </div>
                       </div>

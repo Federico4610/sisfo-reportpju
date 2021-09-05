@@ -158,14 +158,14 @@ class MasyarakatController extends Controller
     {
         $lokasi_file = public_path('/assets/img/produk');
 
-        if(!empty($request->gambar_masakan))
+        if(!empty($request->gambar_pengaduan))
         {
-        //Resize Gambar Masakan
-        $gambar_masakan = $request->file('gambar_masakan');
-        $nama_gambar_masakan = 'produk_'. time() . '.' . $gambar_masakan->getClientOriginalExtension();
-        $resize_gambar_masakan = Image::make($gambar_masakan->getRealPath());
-        $resize_gambar_masakan->save($lokasi_file . '/' . $nama_gambar_masakan);
-        //End resize Gambar Masakan
+        //Resize Gambar Pengaduan
+        $gambar_pengaduan = $request->file('gambar_pengaduan');
+        $nama_gambar_pengaduan = 'pengaduan_'. time() . '.' . $gambar_pengaduan->getClientOriginalExtension();
+        $resize_gambar_pengaduan = Image::make($gambar_pengaduan->getRealPath());
+        $resize_gambar_pengaduan->save($lokasi_file . '/' . $nama_gambar_pengaduan);
+        //End resize Gambar Pengaduan
 
         $tanggal = date('Y-m-d');
         DB::table('tbl_pengaduan')->insert([
@@ -174,7 +174,7 @@ class MasyarakatController extends Controller
             'isi_laporan'=>$request->isi,
             'alamat'=>$request->alamat,
             'status'=>'terkirim',
-            'foto'=>$nama_gambar_masakan
+            'foto'=>$nama_gambar_pengaduan
         ]);
         }else{
             $tanggal = date('Y-m-d');

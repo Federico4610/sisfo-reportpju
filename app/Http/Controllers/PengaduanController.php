@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 class PengaduanController extends Controller
 {
     public function index(Request $request)
@@ -47,8 +47,17 @@ class PengaduanController extends Controller
         return view('admin/pengaduan.tanggapan',['data'=>$data]);
     }
 
-    public function cetakpdf()
+    public function ct_surathrn()
     {
-        return view('pengaduan.cetak');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf = PDF::loadview('/admin/pengaduan/ct_surathrn')->setPaper('a4', 'potrait');
+        return $pdf->stream('Surat-Pengaduan-Harian-pdf');
+    }
+
+    public function ct_laporankegiatan()
+    {
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf = PDF::loadview('/admin/pengaduan/ct_laporankegiatan')->setPaper('a4', 'landscape');
+        return $pdf->stream('Laporan-Kegiataan-Teknisi-pdf');
     }
 }

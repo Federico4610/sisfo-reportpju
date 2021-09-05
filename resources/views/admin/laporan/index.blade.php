@@ -7,7 +7,7 @@
 <div class="section-body">
     <div class="row">
       <div class="col-md-12 mb-5">
-        <h1 id="bo">Rekap laporan</h1>
+        <h1 id="bo">Rekap Laporan</h1>
       </div>
       <div class="col-md-6 offset-md-3 mt-3">
         <div class="card">

@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg navbar-light mt-3 fixed-top" id="navbar">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="{{ asset('assets/img/testing.png') }}" height="50px">
+          <img src="{{ asset('assets/img/lg_dishub.png') }}" height="50px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -38,9 +38,18 @@
               <a class="nav-link link-navbar tebel-sedang" href="/history">History &nbsp;&nbsp;</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link link-navbar tebel-sedang" href="/recent">Pengaduan Terbaru &nbsp;&nbsp;</a>
+            </li>
+            <li class="nav-item">
               <a href="/logoutmasyarakat" class="nav-link bg-custom rounded tebel-sedang shadow" id="btn-sign">LOG OUT</a>
             </li>
             @else
+            <li class="nav-item">
+              <a class="nav-link active bg-active link-navbar tebel-sedang" href="/">Home &nbsp;&nbsp;</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-navbar tebel-sedang" href="/recent">Pengaduan Terbaru &nbsp;&nbsp;</a>
+            </li>
             <li class="nav-item">
               <a href="/loginmasyarakat" class="nav-link bg-custom rounded tebel-sedang shadow" id="btn-sign">SIGN IN</a>
             </li>

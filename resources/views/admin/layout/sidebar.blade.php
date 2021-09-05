@@ -18,7 +18,7 @@
 
         {{-- Entry data --}}
         @if (Auth::guard('admin')->user()->status == 'admin')
-        <li class="menu-header">Entry data</li>
+        <li class="menu-header">Data Master</li>
         <li class="@yield('petugas')"><a class="nav-link" href="/petugas"><i class="fas fa-user"></i> <span>Petugas</span></a></li>
         <li class="@yield('masyarakat')"><a class="nav-link" href="/masyarakat"><i class="fas fa-user"></i> <span>Masyarakat</span></a></li>
         <li class="@yield('stok')"><a class="nav-link" href="/stok"><i class="fas fa-database"></i> <span>Stock Lampu</span></a></li>
@@ -27,8 +27,8 @@
         {{-- Pengaduan --}}
         @if (Auth::guard('admin')->user()->status == 'tatausaha')
         <li class="menu-header">Pengaduan</li>
-        <li class="@yield('pengaduan')"><a class="nav-link" href="/pengaduan"><i class="fas fa-database"></i> <span>Entry pengaduan</span></a></li>
-        <li class="@yield('tanggapan')"><a class="nav-link" href="/tanggapan"><i class="fas fa-database"></i> <span>Entry tanggapan</span></a></li>
+        <li class="@yield('pengaduan')"><a class="nav-link" href="/pengaduan"><i class="fas fa-database"></i> <span>Kelola Pengaduan</span></a></li>
+        <li class="@yield('tanggapan')"><a class="nav-link" href="/tanggapan"><i class="fas fa-database"></i> <span>Kelola Tanggapan </span></a></li>
         @endif
 
         {{-- Laporan --}}

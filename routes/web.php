@@ -45,7 +45,8 @@ Route::group(['middleware'=>'auth:admin,tatausaha,kepala'], function(){
     Route::get('pengaduan_p/{id}','PengaduanController@proses')->name('pengaduan.proses');
     Route::get('pengaduan_s/{id}','PengaduanController@selesai')->name('pengaduan.selesai');
     Route::get('pengaduan_t/{id}','PengaduanController@tanggapan')->name('pengaduan.tanggapan');
-    Route::get('cetak_pdf','PengaduanController@cetakpdf')->name('pengaduan.cetak');
+    Route::get('pengaduan/ct_surathrn', 'PengaduanController@ct_surathrn');
+    Route::get('pengaduan/ct_laporankegiatan', 'PengaduanController@ct_laporankegiatan');
 
 
     // Tanggapan
@@ -60,6 +61,7 @@ Route::group(['middleware'=>'auth:admin,tatausaha,kepala'], function(){
     Route::get('rekap_laporan','LaporanController@rekap');
 });
 
+Route::get('recent','RecentController@index');
 
 Route::get('/','MasyarakatController@depan');
 

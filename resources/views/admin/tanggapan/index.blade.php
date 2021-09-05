@@ -43,11 +43,11 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Id pengaduan</th>
-                                <th>isi tanggapan</th>
-                                <th>Tanggal tanggapan</th>
-                                <th>Aksi</th>
+                                <th>NO</th>
+                                <th>ID PENGADUAN</th>
+                                <th>ISI TANGGAPAN</th>
+                                <th>TANGGAL TANGGAPAN</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>

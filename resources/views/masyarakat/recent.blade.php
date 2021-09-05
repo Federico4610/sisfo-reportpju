@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>History Pengaduan</title>
+  <title>Pengaduan Terbaru</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -31,14 +31,6 @@
     <br><br><br><br><br><br>
 
     <div class="container-fluid">
-      @if (session('message'))
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Ditunggu ya!</strong> {{ session('message') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      @endif
 
       <div class="row justify-content-center">
 
@@ -46,13 +38,13 @@
 
               @foreach ($data as $item)
             @php
-              $kode = 'PNGDN00'.$item->id_pengaduan
+              $kode = 'IMG00'.$item->id_pengaduan
             @endphp
             <div class="col-md-6">
-            <h3 class="text-primary">History pengaduan</h3><hr width="100" class="text-right" style="height: 2px; color: blue;">
+            <h3 class="text-primary">Pengaduan Terbaru</h3><hr width="100" class="text-right" style="height: 2px; color: blue;">
             <br><div class="card mr-3" id="card-cart" style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);" style="width: 25rem; height: 18rem;">
               <div class="card-body">
-                  <h5 class="text-primary">{{ $kode }} | {{ $item->status }}</h5>
+                  <h5 class="text-primary">{{ $kode }} | {{ $item->status }} | {{ $item->tanggal_pengaduan }}</h5>
                   <hr>
                   <div class="row">
                       <div class="col-md-4 col-12">
@@ -65,16 +57,12 @@
                       <div class="col-md-8 col-12">
                         <b>Isi pengaduan</b><br>
                         @php
-                            $num_char = 150;
                             $text = $item->isi_laporan;
-                            $isi = Str::substr($text, 0, $num_char).'.....';
+                            $isi = Str::substr($text, 0);
                         @endphp
                         <p style="text-align: justify;">{{ $isi }}</p>
                       </div>
                   </div>
-              </div>
-              <div class="card-footer bg-transparent text-primary text-right">
-                <a href="{{ route('tanggapans',$item->id_pengaduan) }}" class="text-primary">Lihat tanggapan</a>
               </div>
             </div>
           </div>
@@ -82,15 +70,15 @@
 
         @elseif($data->count() == 2)
         <div class="col-md-12 mb-5">
-          <h3 class="text-primary">History pengaduan</h3><hr width="100" class="text-right" style="height: 2px; color: blue;">
+          <h3 class="text-primary">Pengaduan Terbaru</h3><hr width="100" class="text-right" style="height: 2px; color: blue;">
           <br>  <div class="card-group">
             @foreach ($data as $item)
             @php
-              $kode = 'PNGDN00'.$item->id_pengaduan
+              $kode = 'IMG00'.$item->id_pengaduan
             @endphp
             <div class="card mr-3" id="card-cart" style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);" style="width: 25rem; height: 18rem;">
               <div class="card-body">
-                  <h5 class="text-primary">{{ $kode }} | {{ $item->status }}</h5>
+                  <h5 class="text-primary">{{ $kode }} | {{ $item->status }} | {{ $item->tanggal_pengaduan }}</h5>
                   <hr>
                   <div class="row">
                       <div class="col-md-4 col-12">
@@ -103,16 +91,12 @@
                       <div class="col-md-8 col-12">
                         <b>Isi pengaduan</b><br>
                         @php
-                            $num_char = 150;
                             $text = $item->isi_laporan;
-                            $isi = Str::substr($text, 0, $num_char).'.....';
+                            $isi = Str::substr($text, 0);
                         @endphp
                         <p style="text-align: justify;">{{ $isi }}</p>
                       </div>
                   </div>
-              </div>
-              <div class="card-footer bg-transparent text-primary text-right">
-                <a href="{{ route('tanggapans',$item->id_pengaduan) }}" class="text-primary">Lihat tanggapan</a>
               </div>
             </div>
             @endforeach
@@ -120,16 +104,16 @@
         </div>
         @else
         <div class="col-md-12 mb-5 text-left">
-          <h3 class="text-primary">History pengaduan</h3><hr width="100" class="text-left" style="height: 2px; color: blue;">
+          <h3 class="text-primary">Pengaduan Terbaru</h3><hr width="100" class="text-left" style="height: 2px; color: blue;">
 <br>
           <div class="card-group">
             @foreach ($data as $item)
             @php
-              $kode = 'PNGDN00'.$item->id_pengaduan
+              $kode = 'IMG00'.$item->id_pengaduan
             @endphp
             <div class="card mr-3" id="card-cart" style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);" style="width: 25rem; height: 18rem;">
               <div class="card-body">
-                  <h5 class="text-primary">{{ $kode }} | {{ $item->status }}</h5>
+                  <h5 class="text-primary">{{ $kode }} | {{ $item->status }} | {{ $item->tanggal_pengaduan }}</h5>
                   <hr>
                   <div class="row">
                       <div class="col-md-6 col-12">
@@ -142,17 +126,12 @@
                       <div class="col-md-6 col-12">
                         <b>Isi pengaduan</b><br>
                         @php
-                            $num_char = 150;
                             $text = $item->isi_laporan;
-                            $isi = Str::substr($text, 0, $num_char).'.....';
+                            $isi = Str::substr($text, 0);
                         @endphp
                         <p style="text-align: justify;">{{ $isi }}</p>
                       </div>
                   </div>
-              </div>
-              <div class="card-footer bg-transparent text-right">
-                <a href="{{ route('tanggapans',$item->id_pengaduan) }}" class="text-primary">Lihat tanggapan</a>
-
               </div>
             </div>
             @endforeach
