@@ -41,31 +41,43 @@
 	</tr>
 </table>
 <br>
-<table border="1">
-	<tr>
-		<th width="520"><font size="5">Jumlah pengaduan masuk</b> : {{ $hitungtp }}</th>
-	</tr>
-	<tr>
-		<th><font size="5">Jumlah tanggapan masuk</b> : {{ $hitungtg }}</th>
-	</tr>
-	<tr>
-		<th><font size="5">Jumlah pengaduan yang belum diproses</b> : {{ $terkirim }}</th>
-	</tr>
-	<tr>
-		<th><font size="5">Jumlah pengaduan yang sedang diproses</b> : {{ $proses }}</th>
-	</tr>
-	<tr>
-		<th><font size="5">Jumlah pengaduan yang sedang diproses</b> : {{ $proses }}</th>
-	</tr>
-	<tr>
-		<th><font size="5">Jumlah pengaduan yang sedang diproses</b> : {{ $proses }}</th>
-	</tr>
-	<tr>
-		<th><font size="5">Jumlah masyarakat</b> : {{ $masyarakat }}</th>
-	</tr>
-	<tr>
-		<th><font size="5">Jumlah petugas</b> : {{ $petugas }}</th>
-	</tr>
+<table align="center" border="1">
+    <thead>
+        <tr>
+            <th>NO</th>
+            <th>ID LAPORAN</th>
+            <th>NIK</th>
+            <th>NAMA PELAPOR</th>
+            <th>TANGGAL PENGADUAN</th>
+            <th>ISI LAPORAN</th>
+            <th>ISI TANGGAPAN</th>
+            <th>TANGGAL TANGGAPAN</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @php
+        $no = 1
+        @endphp
+        @foreach ($data as $item)
+        @php
+        $query = DB::table('tbl_tanggapan')->select('tanggapan', 'tgl_tanggapan')
+        ->where('pengaduan_id',$item->id_pengaduan)->first();
+        @endphp
+        <tr>
+            <th>{{ $no++ }}</th>
+            <th>{{ $item->id_pengaduan }}</th>
+            <th>{{ $item->nik }}</th>
+            <th>{{ $item->nama }}</th>
+            <th>{{ $item->tanggal_pengaduan }}</th>            
+            <th>{{ $item->isi_laporan }}</th>
+            <th>{{ $query? $query->tanggapan:
+                'Belum Ditanggapi' }}</th>
+            <th>{{ $query? $query->tgl_tanggapan:
+                'Belum Ditanggapi' }}</th>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
 
 

@@ -10,81 +10,111 @@ class LaporanController extends Controller
 {
     public function rekap(Request $request)
     {
-        // query total pengaduan
-        $totalpengaduan = DB::table('tbl_pengaduan')
-        ->when($request->dari,function ($query) use ($request) {
-        $dari = $request->dari;
-        $ke = $request->ke;   
-            $query
-        ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
-        })->paginate($request->limit ?  $request->limit : 10);
-        $totalpengaduan->appends($request->only('dari','ke'));
+        $ke = $request->ke; $dari = $request->dari;
 
-        // query total tanggapan
-        $totaltanggapan = DB::table('tbl_tanggapan')
-        ->when($request->dari,function ($query) use ($request) {
-        $dari = $request->dari;
-        $ke = $request->ke;   
-            $query
-        ->whereBetween('tgl_tanggapan',[$dari,$ke]);
-        })->paginate($request->limit ?  $request->limit : 10);
-        $totaltanggapan->appends($request->only('dari','ke'));
+        $data = DB::table('tbl_pengaduan')
+        ->join('tbl_masyarakat','tbl_pengaduan.nik_id','=','tbl_masyarakat.nik')
+        ->whereBetween('tbl_pengaduan.tanggal_pengaduan',[$dari,$ke])
+        // ->join('tbl_tanggapan','tbl_tanggapan.pengaduan_id','=','tbl_pengaduan.id_pengaduan')
+        ->get();
 
-        // query total pengaduan terkirim
-        $totalterkirim = DB::table('tbl_pengaduan')
-        ->when($request->dari,function ($query) use ($request) {
-        $dari = $request->dari;
-        $ke = $request->ke;   
-            $query
-        ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
-        })->where('status','terkirim')->paginate($request->limit ?  $request->limit : 10);
-        $totalpengaduan->appends($request->only('dari','ke'));
+        // ->where('id_pengaduan','like',"%{$request->keyword}%")
+        // ->orWhere('nama','like',"%{$request->keyword}%")
+        // ->where('tanggal_pengaduan','like',"%{$request->keyword}%")
+        // ->orWhere('isi_laporan','like',"%{$request->keyword}%")
+        // ->when($request->dari,function ($query) use ($request) {
+        //     $dari = $request->dari;
+        //     $ke = $request->ke;   
+        //         $query
+        //     ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
+        //     })->paginate($request->limit ?  $request->limit : 10);
 
-        // query total pengaduan proses
-        $totalproses = DB::table('tbl_pengaduan')
-        ->when($request->dari,function ($query) use ($request) {
-        $dari = $request->dari;
-        $ke = $request->ke;   
-            $query
-        ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
-        })->where('status','proses')->paginate($request->limit ?  $request->limit : 10);
-        $totalpengaduan->appends($request->only('dari','ke'));
+        // // query total pengaduan
+        // $totalpengaduan = DB::table('tbl_pengaduan')
+        // ->when($request->dari,function ($query) use ($request) {
+        // $dari = $request->dari;
+        // $ke = $request->ke;   
+        //     $query
+        // ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
+        // })->paginate($request->limit ?  $request->limit : 10);
+        // $totalpengaduan->appends($request->only('dari','ke'));
 
-        // query total pengaduan selesai
-        $totalselesai = DB::table('tbl_pengaduan')
-        ->when($request->dari,function ($query) use ($request) {
-        $dari = $request->dari;
-        $ke = $request->ke;   
-            $query
-        ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
-        })->where('status','selesai')->paginate($request->limit ?  $request->limit : 10);
-        $totalpengaduan->appends($request->only('dari','ke'));
+        // // query total tanggapan
+        // $totaltanggapan = DB::table('tbl_tanggapan')
+        // ->when($request->dari,function ($query) use ($request) {
+        // $dari = $request->dari;
+        // $ke = $request->ke;   
+        //     $query
+        // ->whereBetween('tgl_tanggapan',[$dari,$ke]);
+        // })->paginate($request->limit ?  $request->limit : 10);
+        // $totaltanggapan->appends($request->only('dari','ke'));
 
-        // menghitung total pengaduan
-        $hitungtp = $totalpengaduan->count();
+        // // query total pengaduan terkirim
+        // $totalterkirim = DB::table('tbl_pengaduan')
+        // ->when($request->dari,function ($query) use ($request) {
+        // $dari = $request->dari;
+        // $ke = $request->ke;   
+        //     $query
+        // ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
+        // })->where('status','terkirim')->paginate($request->limit ?  $request->limit : 10);
+        // $totalpengaduan->appends($request->only('dari','ke'));
 
-        // menghitung total tanggapan
-        $hitungtg = $totaltanggapan->count();
+        // // query total pengaduan proses
+        // $totalproses = DB::table('tbl_pengaduan')
+        // ->when($request->dari,function ($query) use ($request) {
+        // $dari = $request->dari;
+        // $ke = $request->ke;   
+        //     $query
+        // ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
+        // })->where('status','proses')->paginate($request->limit ?  $request->limit : 10);
+        // $totalpengaduan->appends($request->only('dari','ke'));
 
-        // menghitung total terkirm
-        $terkirim = $totalterkirim->count();
+        // // query total pengaduan selesai
+        // $totalselesai = DB::table('tbl_pengaduan')
+        // ->when($request->dari,function ($query) use ($request) {
+        // $dari = $request->dari;
+        // $ke = $request->ke;   
+        //     $query
+        // ->whereBetween('tanggal_pengaduan',[$dari,$ke]);
+        // })->where('status','selesai')->paginate($request->limit ?  $request->limit : 10);
+        // $totalpengaduan->appends($request->only('dari','ke'));
 
-        // menghitung total proses
-        $proses = $totalproses->count();
+        // // menghitung total pengaduan
+        // $hitungtp = $totalpengaduan->count();
 
-        // menghitung total selesai
-        $selesai = $totalselesai->count();
+        // // menghitung total tanggapan
+        // $hitungtg = $totaltanggapan->count();
 
-        // menghitung masyarakat
-        $masyarakat = DB::table('tbl_masyarakat')->count();
+        // // menghitung total terkirm
+        // $terkirim = $totalterkirim->count();
 
-        // menghitung petugas
-        $petugas = DB::table('tbl_petugas')->count();
+        // // menghitung total proses
+        // $proses = $totalproses->count();
+
+        // // menghitung total selesai
+        // $selesai = $totalselesai->count();
+
+        // // menghitung masyarakat
+        // $masyarakat = DB::table('tbl_masyarakat')->count();
+
+        // // menghitung petugas
+        // $petugas = DB::table('tbl_petugas')->count();
 
         // tanggal
-        $ke = $request->ke; $dari = $request->dari;
+        // dd($dari);
     
-        // return view('admin/laporan.pdf',[
+        // // return view('admin/laporan.pdf',[
+        // //     'hitungtp'=>$hitungtp,
+        // //     'hitungtg'=>$hitungtg,
+        // //     'terkirim'=>$terkirim,
+        // //     'proses'=>$proses,
+        // //     'selesai'=>$selesai,
+        // //     'masyarakat'=>$masyarakat,
+        // //     'petugas'=>$petugas,
+        // //     'ke'=>$ke,'dari'=>$dari
+        // // ]);
+
+        // $pdf = PDF::loadview('admin/laporan.pdf',[
         //     'hitungtp'=>$hitungtp,
         //     'hitungtg'=>$hitungtg,
         //     'terkirim'=>$terkirim,
@@ -95,16 +125,11 @@ class LaporanController extends Controller
         //     'ke'=>$ke,'dari'=>$dari
         // ]);
 
-        $pdf = PDF::loadview('admin/laporan.pdf',[
-            'hitungtp'=>$hitungtp,
-            'hitungtg'=>$hitungtg,
-            'terkirim'=>$terkirim,
-            'proses'=>$proses,
-            'selesai'=>$selesai,
-            'masyarakat'=>$masyarakat,
-            'petugas'=>$petugas,
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf = PDF::loadview('/admin/laporan/pdf' , [
+            'data'=>$data,
             'ke'=>$ke,'dari'=>$dari
-        ]);
+            ])->setPaper('a4', 'landscape');
         return $pdf->stream('pengaduan-pdf');
     }
 }

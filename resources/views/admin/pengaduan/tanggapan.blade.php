@@ -28,6 +28,10 @@
                         <label class="col-md-2">Isi</label>
                         <textarea rows="10" disabled class="form-control col-md-10">{{ $data->isi_laporan }}</textarea>
                     </div>
+                    <div class="form-group row">
+                            <label class="col-md-2">Alamat</label>
+                            <input type="text" class="form-control col-md-4" value="{{ $data->alamat }}" disabled>
+                        </div>
                     <form action="/tambahtanggapan" method="POST">
                         @csrf
                         <div class="form-group row">
