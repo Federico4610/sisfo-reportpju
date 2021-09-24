@@ -109,7 +109,7 @@
           <div class="card-group">
             @foreach ($data as $item)
             @php
-              $kode = 'IMG00'.$item->id_pengaduan
+              $kode = 'IMG-'.$item->id_pengaduan
             @endphp
             <div class="card mr-3" id="card-cart" style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);" style="width: 25rem; height: 18rem;">
               <div class="card-body">
